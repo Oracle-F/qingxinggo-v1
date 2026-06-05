@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>清醒购 V1 看板</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">QingXingGo V1</p>
+      <h1>推荐校准看板</h1>
+      <p class="sub">输入商品需求，快速对比模型基础推荐和联网修正结果。</p>
+    </header>
+
+    <section class="query-panel">
+      <form id="analyzeForm" class="query-form">
+        <input id="queryInput" name="query" type="text" maxlength="100" placeholder="例如：我想买一款相机" required>
+        <button id="submitBtn" type="submit">开始校准</button>
+      </form>
+      <div class="meta-row">
+        <span id="modeChip" class="chip">模式：-</span>
+        <span id="freshnessChip" class="chip">新鲜度：-</span>
+        <span id="timeChip" class="chip">时间：-</span>
+      </div>
+      <p id="errorBox" class="error" hidden></p>
+    </section>
+
+    <section class="grid-two">
+      <article class="card">
+        <h2>基础推荐</h2>
+        <p id="baseSummary" class="summary">等待分析...</p>
+        <ul id="baseItems" class="item-list"></ul>
+      </article>
+      <article class="card">
+        <h2>联网修正推荐</h2>
+        <p id="revisedSummary" class="summary">等待分析...</p>
+        <ul id="revisedItems" class="item-list"></ul>
+      </article>
+    </section>
+
+    <section class="grid-two">
+      <article class="card">
+        <h2>联网更新</h2>
+        <ul id="updatesList" class="plain-list"></ul>
+      </article>
+      <article class="card">
+        <h2>差异点</h2>
+        <ul id="diffList" class="plain-list"></ul>
+      </article>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
