@@ -13,6 +13,10 @@ const baseItems = document.getElementById("baseItems");
 const revisedItems = document.getElementById("revisedItems");
 const updatesList = document.getElementById("updatesList");
 const diffList = document.getElementById("diffList");
+const reverseBtn = document.getElementById("reverseBtn");
+const reverseOutput = document.getElementById("reverseOutput");
+
+let latestItemName = "";
 
 function setBusy(busy) {
   submitBtn.disabled = busy;
@@ -68,6 +72,16 @@ function freshnessLabel(level) {
   return "-";
 }
 
+function setReverseState(itemName) {
+  latestItemName = itemName || "";
+  reverseBtn.disabled = !latestItemName;
+}
+
+function renderReverse(text) {
+  reverseOutput.hidden = false;
+  reverseOutput.innerHTML = `<strong>品牌方视角：</strong><br>${text}`;
+}
+
 async function analyze(query) {
   const url = `/analyze?query=${encodeURIComponent(query)}`;
   const resp = await fetch(url, { method: "GET" });
@@ -97,6 +111,9 @@ form.addEventListener("submit", async (event) => {
 
     renderItems(baseItems, data.base_recommendation.items);
     renderItems(revisedItems, data.revised_recommendation.items);
+    setReverseState(
+      data.revised_recommendation.items[0]?.name || data.base_recommendation.items[0]?.name || ""
+    );
 
     const updates = data.web_updates.map(
       (u) =>
@@ -113,5 +130,29 @@ form.addEventListener("submit", async (event) => {
     setError(err instanceof Error ? err.message : "请求失败");
   } finally {
     setBusy(false);
+  }
+});
+
+reverseBtn.addEventListener("click", async () => {
+  if (!latestItemName) return;
+
+  setError("");
+  reverseBtn.disabled = true;
+  reverseBtn.textContent = "生成中...";
+  try {
+    const resp = await fetch(`/reverse?item_name=${encodeURIComponent(latestItemName)}`, {
+      method: "GET",
+    });
+    if (!resp.ok) {
+      const body = await resp.text();
+      throw new Error(`请求失败 (${resp.status}) ${body}`);
+    }
+    const data = await resp.json();
+    renderReverse(data.reverse_text);
+  } catch (err) {
+    setError(err instanceof Error ? err.message : "请求失败");
+  } finally {
+    reverseBtn.textContent = "查看品牌方怎么说";
+    reverseBtn.disabled = !latestItemName;
   }
 });

@@ -155,6 +155,43 @@ body {
   font-size: 1.06rem;
 }
 
+.reverse-panel {
+  margin-top: 14px;
+}
+
+.reverse-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.secondary-btn {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #f8fbff;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.reverse-output {
+  margin-top: 12px;
+  border-left: 4px solid var(--primary);
+  background: #f8fbff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
 .summary {
   margin: 0 0 8px;
   color: var(--muted);

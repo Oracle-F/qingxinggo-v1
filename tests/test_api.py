@@ -53,3 +53,11 @@ def test_three_mock_scenarios() -> None:
     assert len(strong["diff_points"]) >= 1
     assert len(light["diff_points"]) >= 1
     assert len(none["diff_points"]) == 0
+
+
+def test_reverse_view_endpoint_returns_script() -> None:
+    resp = client.get("/reverse", params={"item_name": "索尼 ZV-E10"})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["item_name"] == "索尼 ZV-E10"
+    assert "核心优势" in data["reverse_text"]

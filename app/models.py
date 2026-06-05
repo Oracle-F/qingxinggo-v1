@@ -63,3 +63,8 @@ class AnalyzeResponse(BaseModel):
     diff_points: list[DiffPoint]
     freshness: Freshness
     generated_at: datetime
+
+
+class ReverseViewResponse(BaseModel):
+    item_name: str = Field(min_length=1)
+    reverse_text: str = Field(min_length=1)
