@@ -21,7 +21,7 @@
 ## 3）运行方式
 
 ```powershell
-cd C:\Users\oracl\Documents\Codex\2026-05-08\files-mentioned-by-the-user-docx\qingxinggo_v1
+cd <repo-root>
 .\run.ps1 -Mode mock
 ```
 

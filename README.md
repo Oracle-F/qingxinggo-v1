@@ -78,6 +78,10 @@ $env:QXG_LIVE_RETRY_BACKOFF_SECONDS="1.2"
 python -m pytest -q
 ```
 
+## 团队上手
+
+如果是小组成员先来查看项目，建议直接看 [TEAM_QUICKSTART.md](TEAM_QUICKSTART.md)。
+
 ## 常见问题
 
 - `Repository not found`：GitHub 仓库地址或 owner 不一致。

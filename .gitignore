@@ -3,4 +3,8 @@ __pycache__/
 .venv/
 .tmp/
 .deps/
+.env
+.env.*
+*.env
+*.env.*
 *.pyc
